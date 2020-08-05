@@ -2,42 +2,32 @@
 # 지불할 돈 1000
 # 구매가격 입력값 380
 # 거슬러줄 돈 620
-n = int(input())
-a = 1000 - n
-money_list=[500,100,50,10,5,1]
-count = 0
-for money in money_list:
-    i = a // money
-    a = a % money
-    count += i
-print(count)
+# price = int(input())
+# charge_coin = 1000 - price
+# coin_list=[500,100,50,10,5,1]
+# result_coins_count = 0
+# for coin in coin_list:
+#     i = charge_coin // coin
+#     charge_coin = charge_coin % coin
+#     result_coins_count += i
+# print(result_coins_count)
     
+##########
+# 재귀 함수로 만들어 보기.
+# 재귀 함수는 탈출 조건이 있어야함.
 
-# while True: 
-#     if a > 500:
-#         i = a // 500
-#         a = a % 500
-#         count += i
-#     if a > 100:
-#         i = a // 100
-#         a = a % 100
-#         count += i
-#     if a > 50:
-#         i = a // 50
-#         a = a % 50
-#         count += i
-#     if a > 10:
-#         i = a // 10
-#         a = a % 10
-#         count += i
-#     if a > 5:
-#         i = a // 5
-#         a = a % 5
-#         count += i
-#     if a > 1:
-#         i = a // 1
-#         a = a % 1
-#         count += i
-#     if a == 0:
-#         break
-# print(count)
+price = int(input())
+charge_coin = 1000 - price
+coin_list=[500,100,50,10,5,1]
+
+def calc_coin_count(idx, coin_list, charge_coin):
+    if idx == len(coin_list):
+        return 0
+
+    result = charge_coin // coin_list[idx]
+    charge_coin = charge_coin % coin_list[idx]
+    idx += 1
+    return result + calc_coin_count(idx, coin_list, charge_coin)
+
+
+print(calc_coin_count(0, coin_list, charge_coin))
