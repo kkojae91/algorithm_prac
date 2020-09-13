@@ -6,22 +6,42 @@
 # import sys
 import math
 
-def getSubsum(data) :
+# n^3 방법
+def getSubsum(num_list) :
     result = -math.inf
     temp = 0
     
-    for start in range(0, len(data)):
-        for end in range(start, len(data)):
+    for start in range(0, len(num_list)):
+        for end in range(start, len(num_list)):
             temp = 0
             for i in range(start, end+1):
-                temp += data[i]
+                temp += num_list[i]
             result = max(result, temp)
             
     return result
 
+# o(n) 방법
+def get_max_value(now_idx, num_list, max_value_list):
+    # 이전의 값과 비교를 하기 위해 +1 을 해준다. 첫 시작을 위함.
+
+    for num in num_list:
+        now_idx += 1
+        max_value_list[now_idx] = num
+
+        if max_value_list[now_idx] < max_value_list[now_idx-1] + num:
+            max_value_list[now_idx] = max_value_list[now_idx-1] + num
+        
+    return max(max_value_list[1:])
+
+
 def main():
-    data = [int(x) for x in input().split()]
-    print(getSubsum(data))
+    num_list = [int(x) for x in input().split()]
+    print(getSubsum(num_list))
+
+    # o(n)의 방법! 
+    max_value_list = [0] * (len(num_list) + 1)
+    now_idx = 0
+    print(get_max_value(now_idx, num_list, max_value_list))
 
 if __name__ == "__main__":
     main()
