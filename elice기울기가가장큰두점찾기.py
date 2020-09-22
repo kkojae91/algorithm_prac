@@ -30,4 +30,4 @@ for i in range(n):
 
 x_y_list = sorted(x_y_list, key= lambda x: x[0])
 # print(x_y_list)
-print(max_slope(x_y_list))
+print("%.3lf"%max_slope(x_y_list))
