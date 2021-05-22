@@ -30,9 +30,42 @@
 # 모든 사람이 2문제씩을 맞췄습니다.
 
 def solution(answers):
-  pass
+    one = [1, 2, 3, 4, 5]
+    two = [2, 1, 2, 3, 2, 4, 2, 5]
+    three = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+#     answers의 길이보다 one two three의 길이를 길게 만들어 준다.
+    if len(one) < len(answers):
+        one = one*(len(answers) // 2 +1)
+    if len(two) < len(answers):
+        two = two*(len(answers) // 2 +1)
+    if len(three) < len(answers):
+        three = three*(len(answers) // 2 +1)
+    
+    count_list = [0, 0, 0]
+    
+    for idx in range(len(answers)):
+        if one[idx] == answers[idx]:
+            count_list[0] += 1
+        if two[idx] == answers[idx]:
+            count_list[1] += 1
+        if three[idx] == answers[idx]:
+            count_list[2] += 1
+    
+    answer = []
+    max_num = 0
+    for idx in range(len(count_list)):
+        if max_num > count_list[idx] :
+            pass
+        elif max_num < count_list[idx]:
+            max_num = count_list[idx]
+            answer = [idx+1]
+        else:
+            answer.append(idx+1)    
+    
+    return answer
 
 def init():
-  pass
+  answers = list(map(int, input().split()))
+  print(solution(answers))
 
 init()
