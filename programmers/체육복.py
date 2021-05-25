@@ -39,6 +39,24 @@ def solution(n, lost, reserve):
   print(check_list)
   return answer
 
+# 모든 것을 한번에 해결하기 보단 부분 부분 문제들을 나눠서 해석하는게 좋음!
+def solution(n, lost, reserve):
+    # 여벌이 있는데 잃어 버리지 않은 사람들 리스트
+    _reserve = [r for r in reserve if r not in lost]
+    # 잃어버렸는데 여벌이 없는 사람들 리스트
+    _lost = [l for l in lost if l not in reserve]
+
+    for r in _reserve:
+      # 최종적으로 여벌이 있는 사람들의 앞, 뒤를 확인하여 잃어버린 사람이 있다면
+      # 최종적으로 여벌이 없는 사람에서 제외 시켜준다.
+        f = r - 1
+        b = r + 1
+        if f in _lost:
+            _lost.remove(f)
+        elif b in _lost:
+            _lost.remove(b)
+    return n - len(_lost)
+
 
 def init():
   n = int(input())
