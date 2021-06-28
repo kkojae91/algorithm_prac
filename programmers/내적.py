@@ -7,8 +7,8 @@ def solution(a, b):
   return answer
 
 def init():
-  a = list(map(int, stdin.readline.split()))
-  b = list(map(int, stdin.readline.split()))
+  a = list(map(int, stdin.readline().split()))
+  b = list(map(int, stdin.readline().split()))
 
   print(solution(a, b))
 
