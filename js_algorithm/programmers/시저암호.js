@@ -73,8 +73,32 @@ function solution(s, n) {
   return answer;
 }
 
+function makeString(num) {
+  return String.fromCharCode(num);
+}
+
+function conditionCheck(str, n) {
+  let answer = "";
+  if (str === " ") {
+    answer += " ";
+  } else if (str === str.toUpperCase()) {
+    const ascii = str.charCodeAt() + n;
+    ascii > 90 ? (answer += makeString(ascii - 26)) : (answer += makeString(ascii));
+  } else {
+    const ascii = str.charCodeAt() + n;
+    ascii > 122 ? (answer += makeString(ascii - 26)) : (answer += makeString(ascii));
+  }
+  return answer;
+}
+
 // 아스키코드 활용
-function solution2(s, n) {}
+function solution2(s, n) {
+  let result = "";
+  for (const str of s) {
+    result += conditionCheck(str, n);
+  }
+  return result;
+}
 
 function init() {
   const sList = ["AB", "z", "a B z"];
