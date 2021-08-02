@@ -25,19 +25,16 @@ top
 class Stack {
   constructor() {
     this.stackList = [];
-    this.currIndex = -1;
   }
 
   push = (num) => {
     this.stackList.push(num);
-    this.currIndex += 1;
   };
 
   pop = () => {
     if (this.stackList.length === 0) {
       return -1;
     }
-    this.currIndex -= 1;
     return this.stackList.pop();
   };
 
@@ -56,7 +53,7 @@ class Stack {
     if (this.stackList.length === 0) {
       return -1;
     }
-    return this.stackList[this.currIndex];
+    return this.stackList[this.stackList.length - 1];
   };
 }
 
@@ -71,15 +68,13 @@ function solution(n, commands) {
       console.log(stack.size());
     } else if (command[0] === "empty") {
       console.log(stack.empty());
-    } else {
+    } else if (command[0] === "top") {
       console.log(stack.top());
     }
   });
-  return -1;
 }
 
 function preprocessInput(inputList) {
-  console.log(inputList);
   const n = Number(inputList[0]);
   const commands = [];
   inputList.splice(0, 1);
@@ -95,6 +90,7 @@ function preprocessInput(inputList) {
 
 function init2() {
   const fs = require("fs");
+  // const inputList = fs.readFileSync("/dev/stdin").toString().split("\n");
   const inputList = fs.readFileSync("./stackText.txt").toString().split("\n");
   preprocessInput(inputList);
 }
