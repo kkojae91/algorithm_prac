@@ -1,42 +1,45 @@
 class Queue {
   constructor() {
     this.queueList = [];
+    this.queueSize = 0;
   }
 
   push = (num) => {
     this.queueList.push(Number(num));
+    this.queueSize++;
   };
 
   pop = () => {
     if (this.queueList.length === 0) {
       return -1;
     }
+    this.queueSize--;
     return this.queueList.shift();
   };
 
   size = () => {
-    return this.queueList.length;
+    return this.queueSize;
   };
 
   empty = () => {
-    if (this.queueList.length === 0) {
+    if (this.queueSize === 0) {
       return 1;
     }
     return 0;
   };
 
   front = () => {
-    if (this.queueList.length === 0) {
+    if (this.queueSize === 0) {
       return -1;
     }
     return this.queueList[0];
   };
 
   back = () => {
-    if (this.queueList.length === 0) {
+    if (this.queueSize === 0) {
       return -1;
     }
-    return this.queueList[this.queueList.length - 1];
+    return this.queueList[this.queueSize - 1];
   };
 }
 
