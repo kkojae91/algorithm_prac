@@ -44,7 +44,7 @@ class Mentoring {
         }
       }
     }
-    console.log(this.answer);
+    return this.answer;
   }
 
   initialize(inputList) {
