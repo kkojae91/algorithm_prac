@@ -14,10 +14,63 @@ class MaxSales {
   constructor() {
     this.n = 0;
     this.k = 0;
+    this.leftPointer = 0;
+    this.sum = 0;
+    this.answer = 0;
+    this.count = 0;
     this.array = [];
   }
 
-  solution() {}
+  solution() {
+    // 오른쪽 포인터가 끝이나면 종료
+    // k번째가 되면 왼쪽 포인터를 한칸 이동
+    for (let rightPointer = 0; rightPointer < this.n; rightPointer++) {
+      if (this.count === this.k) {
+        this.answer = Math.max(this.answer, this.sum);
+        this.sum -= this.array[this.leftPointer];
+        this.leftPointer++;
+        this.count -= 1;
+      }
+      this.sum += this.array[rightPointer];
+      this.count++;
+    }
+    return this.answer;
+  }
+
+  initialize(inputList) {
+    [this.n, this.k] = inputList
+      .slice(0, 1)[0]
+      .split(" ")
+      .map((str) => Number(str));
+    this.array = inputList
+      .slice(1, 2)[0]
+      .split(" ")
+      .map((str) => Number(str));
+  }
+}
+
+class MaxSales2 {
+  constructor() {
+    this.n = 0;
+    this.k = 0;
+    this.sum = 0;
+    this.answer = 0;
+    this.array = [];
+  }
+
+  solution() {
+    for (let i = 0; i < this.k; i++) {
+      this.sum += this.array[i];
+    }
+
+    this.answer = this.sum;
+
+    for (let i = this.k; i < this.n; i++) {
+      this.sum += this.array[i] - this.array[i - this.k];
+      this.answer = Math.max(this.answer, this.sum);
+    }
+    return this.answer;
+  }
 
   initialize(inputList) {
     [this.n, this.k] = inputList
@@ -42,8 +95,11 @@ function main() {
     inputList.push(line);
   }).on("close", () => {
     const maxSales = new MaxSales();
+    const maxSales2 = new MaxSales2();
     maxSales.initialize(inputList);
-    maxSales.solution();
+    maxSales2.initialize(inputList);
+    // console.log(maxSales.solution());
+    console.log(maxSales2.solution());
     process.exit();
   });
 }
