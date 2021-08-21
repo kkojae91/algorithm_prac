@@ -18,9 +18,9 @@ class Parentheses {
 
   solution() {
     // 초기 값 stack에 push
-    this.stack.push(this.str[0])
-    
-    for (let i = 1 ; i < this.str.length; i++) {
+    this.stack.push(this.str[0]);
+
+    for (let i = 1; i < this.str.length; i++) {
       const currText = this.str[i];
       const prevText = this.stack[this.stack.length - 1];
       if (prevText === "(" && currText === ")") {
@@ -29,7 +29,7 @@ class Parentheses {
         this.stack.push(currText);
       }
     }
-    
+
     if (this.stack.length === 0) {
       return "YES";
     } else {
@@ -48,15 +48,15 @@ function main() {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-  })
-  rl.on('line', line => {
+  });
+  rl.on("line", (line) => {
     inputList.push(line);
-  }).on('close', () => {
+  }).on("close", () => {
     const parentheses = new Parentheses();
     parentheses.initialize(inputList);
     console.log(parentheses.solution());
     process.exit();
-  })
+  });
 }
 
 main();
