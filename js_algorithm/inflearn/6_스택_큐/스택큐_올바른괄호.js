@@ -42,6 +42,36 @@ class Parentheses {
   }
 }
 
+class Parentheses2 {
+  constructor() {
+    this.str = "";
+    this.stack = [];
+    this.answer = "YES";
+  }
+
+  solution() {
+    for (const text of this.str) {
+      if (text === "(") {
+        this.stack.push(text);
+      } else {
+        if (this.stack.length === 0) {
+          return "NO";
+        }
+        this.stack.pop();
+      }
+    }
+
+    if (this.stack.length > 0) {
+      return "NO";
+    }
+    return this.answer;
+  }
+
+  initialize(inputList) {
+    this.str = inputList.slice(0, 1)[0];
+  }
+}
+
 function main() {
   const readline = require("readline");
   const inputList = [];
@@ -53,8 +83,11 @@ function main() {
     inputList.push(line);
   }).on("close", () => {
     const parentheses = new Parentheses();
+    const parentheses2 = new Parentheses2();
     parentheses.initialize(inputList);
-    console.log(parentheses.solution());
+    parentheses2.initialize(inputList);
+    // console.log(parentheses.solution());
+    console.log(parentheses2.solution());
     process.exit();
   });
 }
