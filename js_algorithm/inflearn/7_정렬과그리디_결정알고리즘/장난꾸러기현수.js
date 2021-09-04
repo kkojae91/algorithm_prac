@@ -14,10 +14,20 @@ class Mischievous {
     this.n = 0;
     this.array = [];
     this.count = 0;
-    this.temp = 0;
+    this.answer = [];
   }
 
-  solution() {}
+  solution() {
+    const sortArray = [...this.array].sort((a, b) => a - b);
+    for (let i = 0; i < this.n; i++) {
+      const num = this.array[i];
+      const sortNum = sortArray[i];
+      if (num !== sortNum) {
+        this.answer.push(i + 1);
+      }
+    }
+    return this.answer.join(" ");
+  }
 
   initialize(inputList) {
     this.n = Number(inputList.slice(0, 1)[0]);
