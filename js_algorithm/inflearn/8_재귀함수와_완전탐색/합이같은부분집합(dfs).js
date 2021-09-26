@@ -22,7 +22,9 @@ function solution(n, nList) {
       return;
     }
 
+    // 포함되는 경우
     dfs(level + 1, sum + arr[level]);
+    // 포함되지 않는 경우
     dfs(level + 1, sum);
   }
 
